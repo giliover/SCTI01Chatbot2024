@@ -1,1 +1,1 @@
-# lab-ia-scti_2024
+# SCTI01Chatbot2024
