@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbox</title>
+    {% load static %} <!-- Necessário para usar a tag 'static' -->
+    <link rel="stylesheet" href="{% static 'teacher/chatbox.css' %}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chatbot</h2>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <!-- As mensagens serão inseridas aqui -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Digite sua mensagem..." autofocus>
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            if (userInput.trim() !== '') {
+                const chatMessages = document.getElementById('chat-messages');
+
+                // Cria um elemento de mensagem do usuário
+                const userMessage = document.createElement('div');
+                userMessage.classList.add('message', 'user-message');
+                userMessage.textContent = userInput;
+                chatMessages.appendChild(userMessage);
+
+                // Limpa o campo de entrada
+                document.getElementById('user-input').value = '';
+
+                // Resposta simulada do chatbot
+                const botMessage = document.createElement('div');
+                botMessage.classList.add('message', 'bot-message');
+                botMessage.textContent = 'Esta é uma resposta do chatbot.';
+                chatMessages.appendChild(botMessage);
+
+                // Rola para a última mensagem
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+    </script>
+</body>
+</html>
